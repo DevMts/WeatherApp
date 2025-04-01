@@ -1,9 +1,5 @@
-import { Button } from "./components/ui/button";
+import { Button } from "./components/ui/button"
 
 export function App() {
-
-  return (
-    <Button>Enviar</Button>
-  )
+	return <Button>Enviar</Button>
 }
-
