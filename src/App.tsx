@@ -1,13 +1,17 @@
+import { Footer } from "./components/Footer"
 import { Main } from "./components/Main/main"
-import { NavMenu } from "./components/NavMenu"
+import { NavMenu } from "./components/navmenu"
 import { ThemeProvider } from "./components/themes/theme-provider"
-import { Button } from "./components/ui/button"
+import { Separator } from "./components/ui/separator"
 
 export function App() {
 	return (
 		<ThemeProvider>
-		<NavMenu />
-		<Main />
+			<NavMenu />
+			<Separator />
+			<Main />
+			<Separator /> 
+			 <Footer />
 		</ThemeProvider>
 	)
 }
