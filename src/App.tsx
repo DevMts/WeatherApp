@@ -1,3 +1,4 @@
+import { Toaster } from "sonner"
 import { Footer } from "./components/Footer"
 import { Main } from "./components/Main/main"
 import { NavMenu } from "./components/navmenu"
@@ -12,6 +13,7 @@ export function App() {
 			<Main />
 			<Separator /> 
 			 <Footer />
+			 <Toaster richColors />
 		</ThemeProvider>
 	)
 }
