@@ -7,32 +7,33 @@ import colors from 'tailwindcss/colors'
 
 interface miniCardProps {
 	typeWeather: "Umidade" | "Velocidade do vento" | "Pressão" | "Visibilidade"
+	value: string | number
 }
 
-export function MiniCards({ typeWeather }: miniCardProps) {
+export function MiniCards({ typeWeather, value}: miniCardProps) {
 	function iconTheme() {
 		switch (typeWeather) {
 			case "Umidade":
-				return <IoWater color={colors.sky[500]} size={20}/>
+				return { icon: <IoWater color={colors.sky[500]} size={20} />, unit: "%" };
 			case "Velocidade do vento":
-				return <LuWind color={colors.slate[400]}  size={20}/>
+				return { icon: <LuWind color={colors.slate[400]} size={20} />, unit: "km/h" };
 			case "Pressão":
-				return <FaGauge color={colors.violet[400]}  size={20}/>
+				return { icon: <FaGauge color={colors.violet[400]} size={20} />, unit: "hPa" };
 			case "Visibilidade":
-				return <FaEye color={colors.green[300]}  size={20} />
+				return { icon: <FaEye color={colors.green[300]} size={20} />, unit: "m" };
 			default:
-				return <X />
+				return { icon: <X />, unit: "" };
 		}
 	}
-
+	
 	return (
 		<Card className="col-span-1 w-full">
 			<CardContent className="flex justify-between items-center">
 				<div className="leading-[1.3] flex flex-col gap-1.25 items-start">
 					<span className="text-sm text-muted-foreground">{typeWeather}</span>
-					<span className="text-xl font-semibold text-foreground">65%</span>
+					<span className="text-xl font-semibold text-foreground">{value}{iconTheme().unit}</span>
 				</div>
-				<div>{iconTheme()}</div>
+				<div>{iconTheme().icon}</div>
 			</CardContent>
 		</Card>
 	)
