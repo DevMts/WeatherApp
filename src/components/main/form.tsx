@@ -5,6 +5,7 @@ import { toast } from "sonner"
 import { z } from "zod"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
+import { useEffect } from "react"
 
 const citySchema = z.object({
 	city: z.string().min(3).max(50),
@@ -34,8 +35,57 @@ export function Form({ setCoods }: FormProps) {
 		formState: { isSubmitting },
 	} = useForm<City>({
 		resolver: zodResolver(citySchema),
-		defaultValues: { city: "São Paulo" },
 	})
+
+	useEffect(() => {
+		let hasFetched = false 
+	
+		navigator.geolocation.getCurrentPosition(
+			async (position) => {
+				if (hasFetched) return // Se já fez a requisição, não faz de novo
+				hasFetched = true
+				const toasts = toast.loading('carregando', {position: 'top-center'})
+	
+				const { latitude, longitude } = position.coords
+	
+				try {
+					const response = await fetch(
+						`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
+					)
+					const data = await response.json()
+	
+					const foundCity =
+						data.address.city ||
+						data.address.town ||
+						data.address.village ||
+						"Cidade não encontrada"
+	
+					const geoResponse = await fetch(
+						`https://secure.geonames.org/searchJSON?q=${foundCity}&maxRows=1&username=MateusTms`,
+					)
+	
+					if (!geoResponse.ok) throw new Error("Erro ao buscar cidade")
+	
+					const geoData: dateResponse = await geoResponse.json()
+	
+					getCoords({
+						lat: geoData.geonames[0].lat,
+						lon: geoData.geonames[0].lng,
+						state: geoData.geonames[0].adminCodes1.ISO3166_2,
+					})
+					toast.success(`${foundCity} foi encontrado`, { position: "top-center" , id: toasts})
+				} catch {
+					toast.error("Não foi possível encontrar sua localização", {
+						position: "top-center",
+					})
+				}
+			},
+			() => {
+				toast.error("Permissão de localização negada", { position: "top-center" })
+			}
+		)
+	}, []) // O array de dependências vazio garante que o efeito só rode uma vez
+	
 
 	async function handleSubmitas(data: City) {
 		const toastId = toast.loading("Carregando...")
@@ -51,7 +101,13 @@ export function Form({ setCoods }: FormProps) {
 
 			const date: dateResponse = await response.json()
 			console.log(date.geonames[0])
-			getCoords({ lat: date.geonames[0].lat, lon: date.geonames[0].lng })
+			console.log(date.geonames[0].adminCodes1.ISO3166_2)
+
+			getCoords({
+				lat: date.geonames[0].lat,
+				lon: date.geonames[0].lng,
+				state: date.geonames[0].adminCodes1.ISO3166_2,
+			})
 
 			toast.success(`${date.geonames[0].name} foi encontrado`, { id: toastId })
 			return date.geonames[0]

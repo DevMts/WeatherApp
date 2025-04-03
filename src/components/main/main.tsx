@@ -17,6 +17,7 @@ export function Main() {
 	const [coords, setcords] = useState<GetWeatherForecastBody>({
 		lat: "",
 		lon: "",
+		state: ""
 	})
 	const [weatherForecast, setweatherForecast] = useState<GetWeatherForecastResponse>()
 	const [weatherCurrent, setweatherCurrent] = useState<GetWeatherCurrentResponse>({
@@ -35,13 +36,10 @@ export function Main() {
 
 	async function getCoords({ lat, lon }: GetWeatherForecastBody) {
 		setcords({ lat, lon })
-		console.log(coords)
 		const data = await getWeatherForecast({ lat, lon })
-		setweatherForecast(data)
 		console.log(data)
-
+		setweatherForecast(data)
 		const weatherCurrent = await getWeatherCurrent({ lat, lon })
-		console.log(weatherCurrent)
 		setweatherCurrent(weatherCurrent)
 	}
 
@@ -49,12 +47,12 @@ export function Main() {
 		<main className="px-8 md:px-44 w-full mx-auto mb-8  ">
 			<Form setCoods={getCoords} />
 			<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-				<Temp  data={weatherCurrent && weatherCurrent} />
+				<Temp  data={weatherCurrent && weatherCurrent} state={coords.state} />
 				<MiniCards typeWeather="Umidade" value={weatherCurrent.main.humidity} />
 				<MiniCards typeWeather="Velocidade do vento" value={weatherCurrent.wind.speed}/>
 				<MiniCards typeWeather="Pressão" value={weatherCurrent.main.pressure} />
 				<MiniCards typeWeather="Visibilidade" value={weatherCurrent.visibility} />
-				<Future />
+				<Future list={weatherForecast?.list}/>
 				<Days
 					list={weatherForecast?.list?.filter((item) => new Date(item.dt_txt).getHours() === 12)}
 				/>

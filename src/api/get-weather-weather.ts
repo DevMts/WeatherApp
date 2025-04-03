@@ -3,6 +3,7 @@ import { api } from "../lib/axios";
 export interface GetWeatherCurrentBody {
   lat: string;
   lon: string;
+  state?: string;
 }
 
 export interface GetWeatherCurrentResponse {

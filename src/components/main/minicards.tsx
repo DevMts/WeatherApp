@@ -4,6 +4,7 @@ import { LuWind } from "react-icons/lu"
 import { FaEye, FaGauge } from "react-icons/fa6"
 import { X } from "lucide-react"
 import colors from 'tailwindcss/colors'
+import { Skeleton } from "../ui/skeleton"
 
 interface miniCardProps {
 	typeWeather: "Umidade" | "Velocidade do vento" | "Pressão" | "Visibilidade"
@@ -31,7 +32,7 @@ export function MiniCards({ typeWeather, value}: miniCardProps) {
 			<CardContent className="flex justify-between items-center">
 				<div className="leading-[1.3] flex flex-col gap-1.25 items-start">
 					<span className="text-sm text-muted-foreground">{typeWeather}</span>
-					<span className="text-xl font-semibold text-foreground">{value}{iconTheme().unit}</span>
+					<span className="text-xl font-semibold text-foreground flex items-center justify-center gap-1">{value === '' || value === 0 ? <Skeleton className="size-4 "/>  : value}{iconTheme().unit}</span>
 				</div>
 				<div>{iconTheme().icon}</div>
 			</CardContent>
