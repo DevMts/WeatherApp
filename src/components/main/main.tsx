@@ -17,7 +17,6 @@ export function Main() {
 	const [coords, setcords] = useState<GetWeatherForecastBody>({
 		lat: "",
 		lon: "",
-		state: ""
 	})
 	const [weatherForecast, setweatherForecast] = useState<GetWeatherForecastResponse>()
 	const [weatherCurrent, setweatherCurrent] = useState<GetWeatherCurrentResponse>({
@@ -47,7 +46,7 @@ export function Main() {
 		<main className="px-8 md:px-44 w-full mx-auto mb-8  ">
 			<Form setCoods={getCoords} />
 			<div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-				<Temp  data={weatherCurrent && weatherCurrent} state={coords.state} />
+				<Temp  data={weatherCurrent && weatherCurrent}/>
 				<MiniCards typeWeather="Umidade" value={weatherCurrent.main.humidity} />
 				<MiniCards typeWeather="Velocidade do vento" value={weatherCurrent.wind.speed}/>
 				<MiniCards typeWeather="Pressão" value={weatherCurrent.main.pressure} />

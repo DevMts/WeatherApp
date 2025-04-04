@@ -2,10 +2,7 @@ import type { GetWeatherCurrentResponse } from "@/api/get-weather-weather"
 import { Card, CardContent } from "../ui/card"
 import { WeatherIcon } from "@/icons";
 
-export function Temp({ data, state }: {data: GetWeatherCurrentResponse, state?: string}) {
-	console.log(`${state} wwww`);
-	console.log(data.weather);
-	
+export function Temp({ data}: {data: GetWeatherCurrentResponse}) {
 	
 	return (
 		<Card className="md:col-span-4">
