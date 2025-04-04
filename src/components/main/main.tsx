@@ -36,7 +36,7 @@ export function Main() {
 	async function getCoords({ lat, lon }: GetWeatherForecastBody) {
 		setcords({ lat, lon })
 		const data = await getWeatherForecast({ lat, lon })
-		console.log(data)
+		console.log(coords)
 		setweatherForecast(data)
 		const weatherCurrent = await getWeatherCurrent({ lat, lon })
 		setweatherCurrent(weatherCurrent)
