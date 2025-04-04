@@ -11,7 +11,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "jsx": "react-jsx", // Garante suporte a JSX
+    "esModuleInterop": true
   }
 }

@@ -71,7 +71,6 @@ export function Form({ setCoods }: FormProps) {
 					getCoords({
 						lat: geoData.geonames[0].lat,
 						lon: geoData.geonames[0].lng,
-						state: geoData.geonames[0].adminCodes1.ISO3166_2,
 					})
 					toast.success(`${foundCity} foi encontrado`, { position: "top-center" , id: toasts})
 				} catch {
@@ -100,19 +99,17 @@ export function Form({ setCoods }: FormProps) {
 			}
 
 			const date: dateResponse = await response.json()
-			console.log(date.geonames[0])
-			console.log(date.geonames[0].adminCodes1.ISO3166_2)
+			// console.log(date.geonames[0])
 
 			getCoords({
 				lat: date.geonames[0].lat,
 				lon: date.geonames[0].lng,
-				state: date.geonames[0].adminCodes1.ISO3166_2,
 			})
 
 			toast.success(`${date.geonames[0].name} foi encontrado`, { id: toastId })
 			return date.geonames[0]
 		} catch {
-			toast.error("Erro ao buscar cidade, verifique seu nome de usuário", { id: toastId })
+			toast.error("Erro ao buscar cidade, verifique o nome da cidade", { id: toastId })
 		}
 	}
 

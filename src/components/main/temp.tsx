@@ -1,9 +1,11 @@
 import type { GetWeatherCurrentResponse } from "@/api/get-weather-weather"
-import { WiCloudyWindy } from "react-icons/wi"
 import { Card, CardContent } from "../ui/card"
+import { WeatherIcon } from "@/icons";
 
 export function Temp({ data, state }: {data: GetWeatherCurrentResponse, state?: string}) {
 	console.log(`${state} wwww`);
+	console.log(data.weather);
+	
 	
 	return (
 		<Card className="md:col-span-4">
@@ -19,7 +21,8 @@ export function Temp({ data, state }: {data: GetWeatherCurrentResponse, state?: 
 					</span>
 				</div>
 				<div>
-					<WiCloudyWindy className="size-20" />
+					{/* <WeatherIcon iconCode={data.weather[0].icon} size="80"/> */}
+					{data.weather[0] === undefined ? null : <WeatherIcon iconCode={data.weather[0].icon} size="80"/>}
 				</div>
 			</CardContent>
 		</Card>

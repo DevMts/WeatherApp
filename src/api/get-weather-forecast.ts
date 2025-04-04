@@ -3,7 +3,6 @@ import { api } from "../lib/axios";
 export interface GetWeatherForecastBody {
   lat: string;
   lon: string;
-  state?: string;
 }
 
 export interface GetWeatherForecastResponse {
@@ -18,9 +17,6 @@ export interface GetWeatherForecastResponse {
       description: string;
     }[];
     dt_txt: string;
-    adminCodes1: {
-      ISO3166_2: string
-    }
   }[];
 }
 

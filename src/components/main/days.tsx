@@ -1,7 +1,8 @@
 import type { GetWeatherForecastResponse } from "@/api/get-weather-forecast"
-import { FaCloud } from "react-icons/fa6"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { Progress } from "../ui/progress"
+import { WeatherIcon } from "@/icons"
+import {} from "tailwindcss"
 
 export function Days({ list }: GetWeatherForecastResponse) {
 	return (
@@ -19,8 +20,8 @@ export function Days({ list }: GetWeatherForecastResponse) {
 									.replace("-feira", "")
 									.replace(/^\w/, (c) => c.toUpperCase())}
 							</span>
-							<FaCloud className="size-4.5 text-sky-400" />
-							<div className="flex items-center gap-2">
+							<WeatherIcon iconCode={dia.weather[0].icon} size="20" />
+							<div className="flex items-center justify-end gap-2 md:min-w-3xs">
 								<span>{dia.main.temp_min.toFixed(2)}°C</span>
 								<Progress
 									value={(dia.main.temp_min + dia.main.temp_max) / 2}
