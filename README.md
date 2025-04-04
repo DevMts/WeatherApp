@@ -1,54 +1,56 @@
-# React + TypeScript + Vite
+# 🌤 WeatherApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![WeatherApp Screenshot](./image.png)
 
-Currently, two official plugins are available:
+O **WeatherApp** é um aplicativo de previsão do tempo que exibe informações detalhadas sobre o clima atual e previsões futuras. Você pode verificar a **temperatura**, **umidade**, **velocidade do vento**, **pressão atmosférica** e **visibilidade**. Além disso, ele exibe a previsão do tempo para as **próximas 24 horas** (em intervalos de 3 horas) e para os **próximos 5 dias**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias utilizadas
 
-## Expanding the ESLint configuration
+- ⚛ **React** + **TypeScript**
+- 🎨 **TailwindCSS**
+- 🌎 **OpenWeather API** (dados climáticos)
+- 📍 **GeoNames API** (geolocalização)
+- 🌐 **Vercel** (deploy)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔗 Acesse o projeto online
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+🔗 [WeatherApp no Vercel](https://devmtsweather.vercel.app/)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📥 Como rodar localmente
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+> **Pré-requisitos:** Você precisa ter o **pnpm** instalado.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/weatherapp.git
+   cd weatherapp
+   ```
+
+2. Instale as dependências:
+   ```bash
+   pnpm i
+   ```
+
+3. Inicie o projeto:
+   ```bash
+   pnpm run dev
+   ```
+
+4. Acesse no navegador: `http://localhost:5173`
+
+## ✨ Funcionalidades
+
+✅ Busca de cidades  
+✅ Temperatura atual  
+✅ Umidade, Velocidade do vento, Pressão e Visibilidade  
+✅ Previsão para as próximas 24 horas (de 3h em 3h)  
+✅ Previsão para os próximos 5 dias  
+✅ Modo claro/escuro  
+
+## 📸 Captura de tela
+
+![WeatherApp Screenshot](./image.png)
+
+## 📜 Licença
+
+Este projeto é de código aberto e pode ser usado livremente.
