@@ -38,41 +38,41 @@ export function Form({ setCoods }: FormProps) {
 	})
 
 	useEffect(() => {
-		let hasFetched = false 
-	
+		let hasFetched = false
+
 		navigator.geolocation.getCurrentPosition(
 			async (position) => {
 				if (hasFetched) return // Se já fez a requisição, não faz de novo
 				hasFetched = true
-				const toasts = toast.loading('carregando', {position: 'top-center'})
-	
+				const toasts = toast.loading("carregando", { position: "top-center" })
+
 				const { latitude, longitude } = position.coords
-	
+
 				try {
 					const response = await fetch(
 						`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
 					)
 					const data = await response.json()
-	
+
 					const foundCity =
 						data.address.city ||
 						data.address.town ||
 						data.address.village ||
 						"Cidade não encontrada"
-	
+
 					const geoResponse = await fetch(
 						`https://secure.geonames.org/searchJSON?q=${foundCity}&maxRows=1&username=MateusTms`,
 					)
-	
+
 					if (!geoResponse.ok) throw new Error("Erro ao buscar cidade")
-	
+
 					const geoData: dateResponse = await geoResponse.json()
-	
+
 					getCoords({
 						lat: geoData.geonames[0].lat,
 						lon: geoData.geonames[0].lng,
 					})
-					toast.success(`${foundCity} foi encontrado`, { position: "top-center" , id: toasts})
+					toast.success(`${foundCity} foi encontrado`, { position: "top-center", id: toasts })
 				} catch {
 					toast.error("Não foi possível encontrar sua localização", {
 						position: "top-center",
@@ -81,10 +81,9 @@ export function Form({ setCoods }: FormProps) {
 			},
 			() => {
 				toast.error("Permissão de localização negada", { position: "top-center" })
-			}
+			},
 		)
 	}, []) // O array de dependências vazio garante que o efeito só rode uma vez
-	
 
 	async function handleSubmitas(data: City) {
 		const toastId = toast.loading("Carregando...")
@@ -113,6 +112,7 @@ export function Form({ setCoods }: FormProps) {
 		}
 	}
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	function getCoords({ lon, lat }: GetWeatherForecastBody) {
 		setCoods({ lat, lon })
 	}
