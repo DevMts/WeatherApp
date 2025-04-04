@@ -1,6 +1,6 @@
 # 🌤 WeatherApp
 
-![WeatherApp Screenshot](./image.png)
+![WeatherApp Screenshot](./public/image.png)
 
 O **WeatherApp** é um aplicativo de previsão do tempo que exibe informações detalhadas sobre o clima atual e previsões futuras. Você pode verificar a **temperatura**, **umidade**, **velocidade do vento**, **pressão atmosférica** e **visibilidade**. Além disso, ele exibe a previsão do tempo para as **próximas 24 horas** (em intervalos de 3 horas) e para os **próximos 5 dias**.
 
@@ -49,7 +49,7 @@ O **WeatherApp** é um aplicativo de previsão do tempo que exibe informações 
 
 ## 📸 Captura de tela
 
-![WeatherApp Screenshot](./image.png)
+![WeatherApp Screenshot](./public/image.png)
 
 ## 📜 Licença
 
