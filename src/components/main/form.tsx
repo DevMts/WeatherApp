@@ -112,7 +112,6 @@ export function Form({ setCoods }: FormProps) {
 		}
 	}
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	function getCoords({ lon, lat }: GetWeatherForecastBody) {
 		setCoods({ lat, lon })
 	}
