@@ -24,7 +24,7 @@ export function MiniCards({ typeWeather, value }: miniCardProps) {
 			case "Velocidade do vento":
 				return {
 					icon: <LuWind color={colors.slate[400]} size={20} />,
-					unit: "km/h",
+					unit: "m/s",
 					description: "Rapidez do deslocamento do ar"
 				}
 			case "Pressão":
