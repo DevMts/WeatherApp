@@ -108,7 +108,7 @@ export function Form({ setCoods }: FormProps) {
 			toast.success(`${date.geonames[0].name} foi encontrado`, { id: toastId })
 			return date.geonames[0]
 		} catch {
-			toast.error("Erro ao buscar cidade, verifique o nome da cidade", { id: toastId })
+			toast.error("Erro ao buscar cidade, por favor tente novamente", { id: toastId })
 		}
 	}
 
@@ -117,7 +117,7 @@ export function Form({ setCoods }: FormProps) {
 	}
 
 	return (
-		<form action="" onSubmit={handleSubmit(handleSubmitas)}>
+		<form onSubmit={handleSubmit(handleSubmitas)}>
 			<div className="py-6 flex gap-4">
 				<Input
 					type="text"

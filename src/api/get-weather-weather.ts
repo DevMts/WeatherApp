@@ -23,15 +23,20 @@ export interface GetWeatherCurrentResponse {
 }
 
 export async function getWeatherCurrent({ lat, lon }: GetWeatherCurrentBody) {
-  const response = await api.get<GetWeatherCurrentResponse>("weather", {
-    params: {
-      lat: lat,
-      lon: lon,
-      appid: import.meta.env.VITE_API_KEY,
-      units: "metric",
-      lang: "pt_br"
-    },
-  });
+  try {
+    const response = await api.get<GetWeatherCurrentResponse>("weather", {
+      params: {
+        lat: lat,
+        lon: lon,
+        appid: import.meta.env.VITE_API_KEY,
+        units: "metric",
+        lang: "pt_br"
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return null
+  }
 
-  return response.data;
 }

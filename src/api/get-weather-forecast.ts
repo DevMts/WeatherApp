@@ -21,14 +21,18 @@ export interface GetWeatherForecastResponse {
 }
 
 export async function getWeatherForecast({ lat, lon }: GetWeatherForecastBody) {
-  const response = await api.get<GetWeatherForecastResponse>("forecast", {
-    params: {
-      lat: lat,
-      lon: lon,
-      appid: import.meta.env.VITE_API_KEY,
-      units: "metric",
-    },
-  });
-
-  return response.data;
+  try {
+    const response = await api.get<GetWeatherForecastResponse>("forecast", {
+      params: {
+        lat: lat,
+        lon: lon,
+        appid: import.meta.env.VITE_API_KEY,
+        units: "metric",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return null
+  }
 }
